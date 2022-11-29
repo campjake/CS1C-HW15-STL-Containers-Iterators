@@ -2,10 +2,10 @@
 // to illustrate stl containers & iterators
 
 /*************************************************************************
- * AUTHOR     : First Last
+ * AUTHOR     : Jacob Campbell
  * HW15       : stl containers & iterators
  * CLASS      : CS 1C
- * SECTION    : Date & Time
+ * SECTION    : Tues/Thurs @ 1:30
 *************************************************************************/
 
 #include <iostream>
@@ -64,10 +64,8 @@ public:
     iterator begin();   // iterator to first element
     iterator end();     // iterator to one beyond last element
 
-    // add missing const iterators begin, end here
-
-    // ...  // constant iterator to first element
-    // ...  // constant iterator to one beyond last element
+    const_iterator begin() const;  // constant iterator to first element
+    const_iterator end() const;    // constant iterator to one beyond last element
 
     iterator insert(iterator p, const Elem& v); // insert v into list after p
     iterator erase(iterator p);                 // remove p from the list
@@ -94,34 +92,40 @@ public:
     iterator(Link<Elem>* p) : curr{p} { }
     iterator& operator++() // forward
     {
-        // ...
-                        // temp, replace when defining function
-        return nullptr; // included so that incomplete lab code will compile
+        ++(this);
+        return this; // included so that incomplete lab code will compile
     }
     iterator& operator--() // backwards
     {
-        // ...
-                        // temp, replace when defining function
-        return nullptr; // included so that incomplete lab code will compile
+        --this;
+        return this;
     }
     Elem& operator*() // get value (dereference)
     {
-        // ...
-                        // temp, replace when defining function
-        return nullptr; // included so that incomplete lab code will compile
+        return *curr;
     }
 
     bool operator==(const iterator& rhs) const // lhs, rhs iterators point to the same node (equal)
     {
-        // ...
-                      // temp, replace when defining function
-        return false; // included so that incomplete lab code will compile
+        if(curr == rhs.curr)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     bool operator!=(const iterator& rhs) const // lhs, rhs iterators do not point to the same node (not equal)
     {
-        // ...
-                      // temp, replace when defining function
-        return false; // included so that incomplete lab code will compile
+        if(curr != rhs.curr)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 };
 
@@ -137,8 +141,36 @@ class list<Elem>::const_iterator // definition for class const_iterator
 public:
 
     // add missing constructor, overloaded ++, --, *, ==, != operators here
+const_iterator(Link<Elem>* p) : curr{p} {}
+    
+    const_iterator& operator++() const
+    {
+        this->curr++;
+        return *this;
+    }
 
-    // ...
+    const_iterator& operator--() const
+    {
+        this->curr--;
+        return *this;
+    }
+
+    const Elem& operator*() const
+    {
+        return *this->curr;
+    }
+
+    bool operator==(const const_iterator& rhs)
+    {
+        return curr == rhs.curr;
+    }
+
+    bool operator!=(const const_iterator& rhs)
+    {
+        return curr != rhs.curr;
+    }
+
+
 };
 
 //------------------------------------------------------------------------------
@@ -153,7 +185,11 @@ typename list<Elem>::iterator list<Elem>::begin()  // iterator to first element
 
 // constant iterator to first element
 
-// ... add missing constant iterator begin here
+template<typename Elem>
+list<Elem>::const_iterator list<Elem>::begin() const
+{
+    return const_iterator(first);
+}
 
 //------------------------------------------------------------------------------
 
@@ -167,7 +203,11 @@ typename list<Elem>::iterator list<Elem>::end() // iterator to one beyond last e
 
 // constant iterator to last element
 
-// ... add missing constant iterator end here
+template<typename Elem>
+list<Elem>::const_iterator list<Elem>::end() const
+{
+    return const_iterator(last);
+}
 
 //------------------------------------------------------------------------------
 
@@ -272,8 +312,26 @@ int main()
 // WRITTEN ANSWERS
 
 // Q#1
+/*
+    What is an stl container? 
+        A container is a concept that refers to a structure of data that owns the objects inside
+        of the container. Some common implementations in STL are vector and list
 
+    STL Iterator? 
+        An iterator is an object that points to an element in a container. There are several types
+        of iterators that grant different kinds of access to container data.
+        An example is an Input Iterator (read only), Output Iterator (write only) etc.
+
+    STL Algorithm?
+        An algorithm is a series of steps that usually is performed on data using one or more iterators
+        of a container to complete its operations. An example is swap, range, size, last, etc.
+*/
 // Q#2
-
+/*
+    Using an iterator allows an algorithm to be decoupled from the container because the iterator
+    is a reference to the element, rather than actually being the element. This gives the
+    user more control over how their algorithms interact with containers (const vs mutable)
+    and allow algorithms to be used on other kinds of containers.
+*/
 // Q#5
 
