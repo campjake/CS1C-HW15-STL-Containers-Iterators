@@ -260,8 +260,8 @@ int main()
 	cout << endl;
 	cout << "************************************** " << endl;
 	cout << "*           Running HW15             * " << endl;
-	cout << "*      Programmed by First Last      * " << endl;
-	cout << "*         CS1C Date & Time           * " << endl;
+	cout << "*      Programmed by Jacob Campbell  * " << endl;
+	cout << "*         CS1C Tues/Thurs @ 1:30     * " << endl;
 	cout << "************************************** " << endl;
 	cout << endl;
 
