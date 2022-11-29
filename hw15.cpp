@@ -332,6 +332,12 @@ int main()
     is a reference to the element, rather than actually being the element. This gives the
     user more control over how their algorithms interact with containers (const vs mutable)
     and allow algorithms to be used on other kinds of containers.
+
+    The big bonus here is that the algorithms don't have to given any additional information
+    about the containers specific implementation, thus achieving decoupling.
 */
 // Q#5
+/*
 
+
+*/
