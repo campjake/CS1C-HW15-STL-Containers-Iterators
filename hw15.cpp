@@ -92,40 +92,27 @@ public:
     iterator(Link<Elem>* p) : curr{p} { }
     iterator& operator++() // forward
     {
-        ++(this);
-        return this; // included so that incomplete lab code will compile
+        curr = curr->succ;
+        return this; 
     }
     iterator& operator--() // backwards
     {
-        --this;
+        curr = curr->prev;
         return this;
     }
     Elem& operator*() // get value (dereference)
     {
-        return *curr;
+        return curr->val;
     }
 
     bool operator==(const iterator& rhs) const // lhs, rhs iterators point to the same node (equal)
     {
-        if(curr == rhs.curr)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return curr == rhs.curr;
+
     }
     bool operator!=(const iterator& rhs) const // lhs, rhs iterators do not point to the same node (not equal)
     {
-        if(curr != rhs.curr)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return curr != rhs.curr;
     }
 };
 
@@ -140,12 +127,12 @@ class list<Elem>::const_iterator // definition for class const_iterator
                               // refer to const correctness reading
 public:
 
-    // add missing constructor, overloaded ++, --, *, ==, != operators here
 const_iterator(Link<Elem>* p) : curr{p} {}
-    
+
+// add missing constructor, overloaded ++, --, *, ==, != operators here    
     const_iterator& operator++() const
     {
-        this->curr++;
+        curr = curr->succ;
         return *this;
     }
 
@@ -238,8 +225,20 @@ double* low_doubles(double* first, double* last)
 
 // implement templated low algorithm here
 
-// ...
+template<typename iterator>
+iterator low(const iterator first, const iterator last)
+{
+    iterator low = first;
+    for(iterator p = first; p != last; p++)
+    {
+        if(*p < low)
+        {
+            low = p;
+        }
 
+        return low;
+    }
+}
 //------------------------------------------------------------------------------
 
 } // hw15
