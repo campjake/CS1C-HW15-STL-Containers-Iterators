@@ -225,19 +225,21 @@ double* low_doubles(double* first, double* last)
 
 // implement templated low algorithm here
 
-template<typename iterator>
-iterator low(const iterator first, const iterator last)
+// If an algorithm has a return type, it returns an iterator.
+
+template<typename Iterator> // requirement (both parameters are type iterator)
+Iterator low(const Iterator first, const Iterator last)
 {
-    iterator low = first;
-    for(iterator p = first; p != last; p++)
+    Iterator low = first;
+    for(Iterator p = first; p != last; p++)
     {
         if(*p < low)
         {
             low = p;
         }
-
-        return low;
     }
+
+    return low;
 }
 //------------------------------------------------------------------------------
 
@@ -285,6 +287,12 @@ int main()
     cout << "low_doubles alg: double vector min value second half is " << *lowv2 << endl << endl;
 
 	// Q#5 - low algorithm
+
+    const list<int>& constList = myList;
+    // std::string mutableString = "Hello World";
+    // auto&& constRef = std::as_const(mutableString);
+    // auto test = std::as_const(myList);
+
 
     // NOTE: uncomment code below once low algorithm definition is complete
 
