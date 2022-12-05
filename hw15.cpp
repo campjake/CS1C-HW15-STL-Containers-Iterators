@@ -296,19 +296,19 @@ int main()
 
     // NOTE: uncomment code below once low algorithm definition is complete
 
-    // lowa = low(&d[0], &d[9]); // min of array
-    // cout << "low alg: double array min value is " << *lowa << endl << endl;
+    lowa = low(&d[0], &d[9]); // min of array
+    cout << "low alg: double array min value is " << *lowa << endl << endl;
 
-    // lowv1 = low(&v[0], middle);          // min of vector first half
-    // lowv2 = low(middle, &v[0]+v.size()); // min of vector second half
-    // cout << "low alg: double vector min value first half is " << *lowv1 << endl;
-    // cout << "low alg: double vector min value second half is " << *lowv2 << endl << endl;
+    lowv1 = low(&v[0], middle);          // min of vector first half
+    lowv2 = low(middle, &v[0]+v.size()); // min of vector second half
+    cout << "low alg: double vector min value first half is " << *lowv1 << endl;
+    cout << "low alg: double vector min value second half is " << *lowv2 << endl << endl;
 
-    // list<int>::iterator p = low(myList.begin(), myList.end()); // min of list
-    // if (p==myList.end())    // did we reach the end?
-    //     cout << "low alg: the list is empty";
-    // else
-    //     cout << "low alg: the lowest value in the list is " << *p << endl;
+    list<int>::iterator p = low(myList.begin(), myList.end()); // min of list
+    if (p==myList.end())    // did we reach the end?
+        cout << "low alg: the list is empty";
+    else
+        cout << "low alg: the lowest value in the list is " << *p << endl;
 
 
     return 0;
