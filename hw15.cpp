@@ -233,7 +233,7 @@ Iterator low(const Iterator first, const Iterator last)
     Iterator low = first;
     for(Iterator p = first; p != last; p++)
     {
-        if(*p < low)
+        if(*p < *low)
         {
             low = p;
         }
@@ -345,6 +345,9 @@ int main()
 */
 // Q#5
 /*
-
+    In the doubles low algorithm, when l is set to -1, there is a chance that it is smaller than
+    the smallest double in the vector. When this happens, low is returned to the calling function
+    without being defined, which results in unexpected behavior. See the implementation of
+    the templated low algorithm for the correct algorithm.
 
 */
