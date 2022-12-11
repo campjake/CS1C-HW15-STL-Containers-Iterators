@@ -93,7 +93,7 @@ public:
     iterator& operator++() // forward
     {
         curr = curr->succ;
-        return this; 
+        return *this; 
     }
     iterator& operator--() // backwards
     {
@@ -173,7 +173,7 @@ typename list<Elem>::iterator list<Elem>::begin()  // iterator to first element
 // constant iterator to first element
 
 template<typename Elem>
-list<Elem>::const_iterator list<Elem>::begin() const
+typename list<Elem>::const_iterator list<Elem>::begin() const
 {
     return const_iterator(first);
 }
@@ -191,7 +191,7 @@ typename list<Elem>::iterator list<Elem>::end() // iterator to one beyond last e
 // constant iterator to last element
 
 template<typename Elem>
-list<Elem>::const_iterator list<Elem>::end() const
+typename list<Elem>::const_iterator list<Elem>::end() const
 {
     return const_iterator(last);
 }
@@ -231,7 +231,7 @@ template<typename Iterator> // requirement (both parameters are type iterator)
 Iterator low(const Iterator first, const Iterator last)
 {
     Iterator low = first;
-    for(Iterator p = first; p != last; p++)
+    for(Iterator p = first; p != last; ++p)
     {
         if(*p < *low)
         {
